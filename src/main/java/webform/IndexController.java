@@ -3,16 +3,12 @@ package webform;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.view.RedirectView;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class IndexController {
     @Autowired
-    private ChatRepository repository;
+    private UserRepository userRepository;
 
     @RequestMapping("/")
     public String redirect() {
@@ -21,36 +17,38 @@ public class IndexController {
 
     @PostMapping(value = "/index", params = "action=Log In")
     public String LogInIndex(@ModelAttribute User user) {
-        if (repository.checkByLogin(user.getLogin()) != 0) {
-            return "redirect:/login";
+        User _user = userRepository.getUserByLoginAndPassword(user.getLogin(), user.getPassword());
+        if(_user == null) {
+            return "redirect:/login?msg=Error in login or password";
         }
-        return "index";
+        return "redirect:/index?id=" + _user.getId();
     }
 
     @PostMapping(value = "/index", params = "action=Sign Up")
     public String SignUpIndex(@ModelAttribute User user) {
-        if (repository.checkByLogin(user.getLogin()) != 0) {
-            return "redirect:/login";
+        if (userRepository.countAllUsersByLogin(user.getLogin()) != 0) {
+            return "redirect:/login?msg=Error! Login \"" + user.getLogin() + "\" is already used";
         }
-        return "index";
+        userRepository.addUser(user.getLogin(), user.getPassword());
+        User _user = userRepository.getUserByLoginAndPassword(user.getLogin(), user.getPassword());
+        return "redirect:/index?id=" + _user.getId();
     }
 
     @GetMapping("/index")
-    public String getIndex(Model model) {
-        model.addAttribute("user", new User());
+    public String getIndex(Model model, @RequestParam(name = "id", required = false) Long id) {
+        if(id == null) {
+            return "redirect:/login";
+        }
+        User user = userRepository.getUserById(id);
+        model.addAttribute("user", user);
         return "index";
     }
 
     @GetMapping("/login")
-    public String loginForm(Model model) {
+    public String loginForm(Model model, @RequestParam(name = "msg", required = false) String msg) {
         model.addAttribute("user", new User());
+        model.addAttribute("message", msg);
         return "login";
-    }
-
-    @GetMapping("/registration")
-    public String registrationForm(Model model) {
-        model.addAttribute("user", new User());
-        return "signup";
     }
 
 }
