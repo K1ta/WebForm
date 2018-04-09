@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Index</title>
+</head>
+
+<body>
+
+<div class="chat-main">
+    <div class="chat-info">
+        <div class="chat-info-login">
+            <p th:text="'login: ' + ${user.login}"></p>
+        </div>
+        <div class="chat-info-log-out">
+            <button class="chat-info-log-out_button">LOG OUT</button>
+        </div>
+    </div>
+    <div class="chat-messages">
+        <div class="chat-messages-history">
+
+        </div>
+        <div class="chat-messages-new-message">
+
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
