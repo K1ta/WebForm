@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Search User</title>
+    <script src="scripts/back.js"></script>
+</head>
+
+<body>
+<div class="form-title">Search user by ID</div>
+<div class="form-w">
+    <form action="#" th:action="@{/api/remove}" th:object="${user}" method="post">
+        <p>ID: <input type="number" title="ID" required th:field="*{id}"></p>
+        <p><input type="submit" value="Remove user"/> <input type="reset" value="Reset"/></p>
+    </form>
+</div>
+<p th:if="${invalid!=null && invalid}" th:text="'This ID doesn\'t exist'"></p>
+<p th:if="${invalid!=null && !invalid}" th:text="'User has been removed'"></p>
+</body>
+<div class="back-button-w">
+    <button class="back-button">Back</button>
+</div>
+</html>

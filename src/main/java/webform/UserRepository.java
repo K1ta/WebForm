@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    @Query(value = "SELECT COUNT(id) FROM users WHERE login = :login", nativeQuery = true)
+    /*@Query(value = "SELECT COUNT(id) FROM users WHERE login = :login", nativeQuery = true)
     int countAllUsersByLogin(
             @Param("login") String login
     );
@@ -32,6 +32,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query(value = "SELECT * FROM users WHERE id = :id", nativeQuery = true)
     User getUserById(
             @Param("id") Long id
-    );
+    );*/
 
 }

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Add User</title>
+    <script src="scripts/back.js"></script>
+</head>
+
+<body>
+<div class="form-title">Add new user</div>
+<p th:if="${invalid != null && invalid}" th:text="'ID is already exist'"></p>
+<p th:if="${invalid != null && !invalid}" th:text="'User successfully added'"></p>
+<div class="form-w">
+    <form action="#" th:action="@{/api/add}" th:object="${user}" method="post">
+        <p>ID: <input type="number" title="ID" required th:field="*{id}"></p>
+        <p>E-mail: <input type="email" title="E-mail" required th:field="*{email}"></p>
+        <p>Login: <input type="text" title="Login must contain only letters and numbers" pattern="[a-zA-Z0-9_]{1,20}"
+                         required th:field="*{login}"></p>
+        <p>Name: <input type="text" title="Name must contain only letters and '-' sign" pattern="[a-zA-Z-]{1,20}"
+                        required th:field="*{name}"></p>
+        <p>Surname: <input type="text" title="Name must contain only letters and '-' sign" pattern="[a-zA-Z-]{1,20}"
+                           required th:field="*{surname}"></p>
+        <p>Birthdate: <input type="date" required th:field="*{birthdate}"></p>
+        <p><input type="submit" value="Add user"/> <input type="reset" value="Reset"/></p>
+    </form>
+</div>
+<div class="back-button-w">
+    <button class="back-button">Back</button>
+</div>
+</body>
+</html>

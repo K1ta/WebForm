@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Search User</title>
+    <script src="scripts/back.js"></script>
+</head>
+
+<body>
+<div class="form-title">Search user by ID</div>
+<div class="form-w">
+    <form action="#" th:action="@{/api/get}" th:object="${user}" method="post">
+        <p>ID: <input type="number" title="ID" required th:field="*{id}"></p>
+        <p><input type="submit" value="Search"/> <input type="reset" value="Reset"/></p>
+    </form>
+</div>
+<div class="results-title">Results:</div>
+<p th:if="${_user==null}" th:text="'No results found'"></p>
+<p th:if="${_user!=null && _user.email!=null}" th:text="'Email: '+${_user.email}"></p>
+<p th:if="${_user!=null && _user.id!=null}" th:text="'ID: '+${_user.id}"></p>
+<p th:if="${_user!=null && _user.login!=null}" th:text="'Login: '+${_user.login}"></p>
+<p th:if="${_user!=null && _user.name!=null}" th:text="'Name: '+${_user.name}"></p>
+<p th:if="${_user!=null && _user.surname!=null}" th:text="'Surname: '+${_user.surname}"></p>
+<p th:if="${_user!=null && _user.birthdate!=null}" th:text="'Birthdate: '+${_user.birthdate}"></p>
+</body>
+<div class="back-button-w">
+    <button class="back-button">Back</button>
+</div>
+</html>
