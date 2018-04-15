@@ -14,7 +14,7 @@
         <form class="form-data" action="#" th:action="@{/api/get}" th:object="${user}" method="post">
             <div class="form-field">
                 <div class="form-field-name">ID:</div>
-                <input type="number" title="ID" required th:field="*{id}">
+                <input class="form-field-input" type="number" title="ID" required th:field="*{id}">
             </div>
             <div class="form-field">
                 <input class="form-button" type="submit" value="Search"/>
