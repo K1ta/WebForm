@@ -2,22 +2,32 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>Search User</title>
+    <title>Delete User</title>
+    <link rel="stylesheet" href="styles/remove.css"/>
     <script src="scripts/back.js"></script>
 </head>
 
 <body>
-<div class="form-title">Search user by ID</div>
 <div class="form-w">
-    <form action="#" th:action="@{/api/remove}" th:object="${user}" method="post">
-        <p>ID: <input type="number" title="ID" required th:field="*{id}"></p>
-        <p><input type="submit" value="Remove user"/> <input type="reset" value="Reset"/></p>
-    </form>
+    <div class="form">
+        <div class="form-title">Delete user by ID</div>
+        <p class="info-message" th:if="${invalid!=null && invalid}" th:text="'This ID doesn\'t exist'"></p>
+        <p class="info-message" th:if="${invalid!=null && !invalid}" th:text="'User has been removed'"></p>
+        <form class="form-data" action="#" th:action="@{/api/remove}" th:object="${user}" method="post">
+            <div class="form-field">
+                <div class="form-field-name">ID:</div>
+                <input type="number" title="ID" required th:field="*{id}">
+            </div>
+            <div class="form-field">
+                <input class="form-button" type="submit" value="Delete"/>
+                <input class="form-button" type="reset" value="Reset"/>
+            </div>
+        </form>
+        <div class="back-button-w">
+            <button class="back-button">Back</button>
+        </div>
+    </div>
 </div>
-<p th:if="${invalid!=null && invalid}" th:text="'This ID doesn\'t exist'"></p>
-<p th:if="${invalid!=null && !invalid}" th:text="'User has been removed'"></p>
 </body>
-<div class="back-button-w">
-    <button class="back-button">Back</button>
-</div>
+
 </html>

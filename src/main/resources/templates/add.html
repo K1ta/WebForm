@@ -16,45 +16,33 @@
         <form class="form-data" action="#" th:action="@{/api/add}" th:object="${user}" method="post">
             <div class="form-field">
                 <div class="form-field-name">ID:</div>
-                <div class="form-field-input-w">
-                    <input class="form-field-input" type="number" title="ID" required th:field="*{id}">
-                </div>
+                <input class="form-field-input" type="number" title="ID" required th:field="*{id}">
             </div>
             <div class="form-field">
                 <div class="form-field-name">Email:</div>
-                <div class="form-field-input-w">
-                    <input class="form-field-input" type="email" title="E-mail" required th:field="*{email}">
-                </div>
+                <input class="form-field-input" type="email" title="E-mail" required th:field="*{email}">
             </div>
             <div class="form-field">
                 <div class="form-field-name">Login:</div>
-                <div class="form-field-input-w">
-                    <input class="form-field-input" type="text" title="Login must contain only letters and numbers"
-                           pattern="[a-zA-Z0-9_]{1,20}"
-                           required th:field="*{login}">
-                </div>
+                <input class="form-field-input" type="text" title="Login must contain only letters and numbers"
+                       pattern="[a-zA-Z0-9_]{1,20}"
+                       required th:field="*{login}">
             </div>
             <div class="form-field">
                 <div class="form-field-name">Name:</div>
-                <div class="form-field-input-w">
-                    <input class="form-field-input" type="text" title="Name must contain only letters and '-' sign"
-                           pattern="[a-zA-Z-]{1,20}"
-                           required th:field="*{name}">
-                </div>
+                <input class="form-field-input" type="text" title="Name must contain only letters and '-' sign"
+                       pattern="[a-zA-Z-]{1,20}"
+                       required th:field="*{name}">
             </div>
             <div class="form-field">
                 <div class="form-field-name">Surname:</div>
-                <div class="form-field-input-w">
-                    <input class="form-field-input" type="text" title="Name must contain only letters and '-' sign"
-                           pattern="[a-zA-Z-]{1,20}"
-                           required th:field="*{surname}">
-                </div>
+                <input class="form-field-input" type="text" title="Name must contain only letters and '-' sign"
+                       pattern="[a-zA-Z-]{1,20}"
+                       required th:field="*{surname}">
             </div>
             <div class="form-field">
                 <div class="form-field-name">Birthdate:</div>
-                <div class="form-field-input-w">
-                    <input class="form-field-input" type="date" required th:field="*{birthdate}">
-                </div>
+                <input class="form-field-input" type="date" required th:field="*{birthdate}">
             </div>
             <div class="form-field">
                 <input class="form-button" type="submit" value="Add user"/>

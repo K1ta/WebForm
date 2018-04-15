@@ -69,7 +69,7 @@ public class User {
         for (Field field : User.class.getDeclaredFields()) {
             try {
                 Object value = field.get(user);
-                if (value != null) {
+                if (value.toString().length() > 0) {
                     field.set(this, value);
                 }
             } catch (IllegalAccessException e) {

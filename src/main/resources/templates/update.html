@@ -3,28 +3,54 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Update User</title>
+    <link rel="stylesheet" href="styles/update.css"/>
     <script src="scripts/back.js"></script>
 </head>
 
 <body>
-<div class="form-title">Add new user</div>
-<p th:if="${invalid}">There is no such ID</p>
 <div class="form-w">
-    <form action="#" th:action="@{/api/update}" th:object="${user}" method="post">
-        <p>ID: <input type="number" title="ID" required th:field="*{id}"></p>
-        <p>E-mail: <input type="email" title="E-mail" th:field="*{email}"></p>
-        <p>Login: <input type="text" title="Login must contain only letters and numbers" pattern="[a-zA-Z0-9_]{1,20}"
-                         th:field="*{login}"></p>
-        <p>Name: <input type="text" title="Name must contain only letters and '-' sign" pattern="[a-zA-Z-]{1,20}"
-                        th:field="*{name}"></p>
-        <p>Surname: <input type="text" title="Name must contain only letters and '-' sign" pattern="[a-zA-Z-]{1,20}"
-                           th:field="*{surname}"></p>
-        <p>Birthdate: <input type="date" th:field="*{birthdate}"></p>
-        <p><input type="submit" value="Update user"/> <input type="reset" value="Reset"/></p>
-    </form>
-</div>
-<div class="back-button-w">
-    <button class="back-button">Back</button>
+    <div class="form">
+        <div class="form-title">Update user data</div>
+        <div class="info">Fill in the required fields</div>
+        <p class="info-message" th:if="${invalid!=null && invalid}">There is no such ID</p>
+        <p class="info-message" th:if="${invalid!=null && !invalid}">User successfully updated</p>
+        <form class="form-data" action="#" th:action="@{/api/update}" th:object="${user}" method="post">
+            <div class="form-field">
+                <div class="form-field-name">ID:</div>
+                <input class="form-field-input" type="number" title="ID" required th:field="*{id}">
+            </div>
+            <div class="form-field">
+                <div class="form-field-name">Email:</div>
+                <input class="form-field-input" type="email" title="E-mail" th:field="*{email}">
+            </div>
+            <div class="form-field">
+                <div class="form-field-name">Login:</div>
+                <input class="form-field-input" type="text" title="Login must contain only letters and numbers"
+                       pattern="[a-zA-Z0-9_]{1,20}" th:field="*{login}">
+            </div>
+            <div class="form-field">
+                <div class="form-field-name">Name:</div>
+                <input class="form-field-input" type="text" title="Name must contain only letters and '-' sign"
+                       pattern="[a-zA-Z-]{1,20}" th:field="*{name}">
+            </div>
+            <div class="form-field">
+                <div class="form-field-name">Surname:</div>
+                <input class="form-field-input" type="text" title="Name must contain only letters and '-' sign"
+                       pattern="[a-zA-Z-]{1,20}" th:field="*{surname}">
+            </div>
+            <div class="form-field">
+                <div class="form-field-name">Birthdate:</div>
+                <input class="form-field-input" type="date" th:field="*{birthdate}">
+            </div>
+            <div class="form-field">
+                <input class="form-button" type="submit" value="Update"/>
+                <input class="form-button" type="reset" value="Reset"/>
+            </div>
+        </form>
+        <div class="back-button-w">
+            <button class="back-button">Back</button>
+        </div>
+    </div>
 </div>
 </body>
 </html>

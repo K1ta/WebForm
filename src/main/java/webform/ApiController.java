@@ -32,13 +32,13 @@ public class ApiController {
     @PostMapping("/update")
     public String update(User user) {
         if (!repository.existsById(user.getId())) {
-            return "redirect:/add?invalid = true";
+            return "redirect:/update?invalid=true";
         }
         User _user = repository.findById(user.getId()).get();
         _user.update(user);
         repository.deleteById(user.getId());
         repository.save(_user);
-        return "redirect:/index";
+        return "redirect:/update?invalid=false";
     }
 
     @PostMapping("/remove")
