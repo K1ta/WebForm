@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Add User</title>
+    <link rel="stylesheet" href="styles/add.css"/>
+    <script src="scripts/back.js"></script>
+</head>
+
+<body>
+<div class="form-w">
+    <div class="form">
+        <div class="form-title">Add new user</div>
+        <p th:if="${invalid != null && invalid}" th:text="'ID is already exist'"></p>
+        <p th:if="${invalid != null && !invalid}" th:text="'User successfully added'"></p>
+        <form class="form-data" action="#" th:action="@{/api/add}" th:object="${user}" method="post">
+            <div class="form-field">
+                <div class="form-field-name">ID:</div>
+                <input class="form-field-input" type="number" title="ID" required th:field="*{id}">
+            </div>
+            <div class="form-field">
+                <div class="form-field-name">Email:</div>
+                <input class="form-field-input" type="email" title="E-mail" required th:field="*{email}">
+            </div>
+            <div class="form-field">
+                <div class="form-field-name">Login:</div>
+                <input class="form-field-input" type="text" title="Login must contain only letters and numbers"
+                       pattern="[a-zA-Z0-9_]{1,20}"
+                       required th:field="*{login}">
+            </div>
+            <div class="form-field">
+                <div class="form-field-name">Name:</div>
+                <input class="form-field-input" type="text" title="Name must contain only letters and '-' sign"
+                       pattern="[a-zA-Z-]{1,20}"
+                       required th:field="*{name}">
+            </div>
+            <div class="form-field">
+                <div class="form-field-name">Surname:</div>
+                <input class="form-field-input" type="text" title="Name must contain only letters and '-' sign"
+                       pattern="[a-zA-Z-]{1,20}"
+                       required th:field="*{surname}">
+            </div>
+            <div class="form-field">
+                <div class="form-field-name">Birthdate:</div>
+                <input class="form-field-input" type="date" required th:field="*{birthdate}">
+            </div>
+            <div class="form-field">
+                <input class="form-button" type="submit" value="Add user"/>
+                <input class="form-button" type="reset" value="Reset"/>
+            </div>
+        </form>
+        <div class="back-button-w">
+            <button class="back-button">Back</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

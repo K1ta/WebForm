@@ -1,27 +1,27 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Index</title>
+    <link rel="stylesheet" href="styles/index.css"/>
+    <script src="scripts/index.js"></script>
 </head>
 
 <body>
-
-<div class="chat-main">
-    <div class="chat-info">
-        <div class="chat-info-login">
-            <p th:text="'login: ' + ${user.login}"></p>
+<div class="menu-w">
+    <div class="menu">
+        <div class="menu-title">Menu:</div>
+        <div class="menu-button">
+            <button class="menu-add">Add new user</button>
         </div>
-        <div class="chat-info-logout">
-            <button class="chat-info-logout_button">LOG OUT</button>
+        <div class="menu-button">
+            <button class="menu-update">Update user data</button>
         </div>
-    </div>
-    <div class="chat-messages">
-        <div class="chat-list">
+        <div class="menu-button">
+            <button class="menu-get">Search by ID</button>
         </div>
-        <div class="chat-new-message">
-            <input class="chat-new-message_input">
-            <button class="chat-new-message_button">Send</button>
+        <div class="menu-button">
+            <button class="menu-remove">Delete by ID</button>
         </div>
     </div>
 </div>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Search User</title>
+    <link rel="stylesheet" href="styles/get.css"/>
+    <script src="scripts/back.js"></script>
+</head>
+
+<body>
+<div class="form-w">
+    <div class="form">
+        <div class="form-title">Search user by ID</div>
+        <form class="form-data" action="#" th:action="@{/api/get}" th:object="${user}" method="post">
+            <div class="form-field">
+                <div class="form-field-name">ID:</div>
+                <input type="number" title="ID" required th:field="*{id}">
+            </div>
+            <div class="form-field">
+                <input class="form-button" type="submit" value="Search"/>
+                <input class="form-button" type="reset" value="Reset"/>
+            </div>
+        </form>
+        <div class="results-title">Results:</div>
+        <div class="results-w">
+            <p class="result-field" th:if="${_user==null}" th:text="'No results found'"></p>
+            <p class="result-field" th:if="${_user!=null && _user.email!=null}" th:text="'Email: '+${_user.email}"></p>
+            <p class="result-field" th:if="${_user!=null && _user.id!=null}" th:text="'ID: '+${_user.id}"></p>
+            <p class="result-field" th:if="${_user!=null && _user.login!=null}" th:text="'Login: '+${_user.login}"></p>
+            <p class="result-field" th:if="${_user!=null && _user.name!=null}" th:text="'Name: '+${_user.name}"></p>
+            <p class="result-field" th:if="${_user!=null && _user.surname!=null}"
+               th:text="'Surname: '+${_user.surname}"></p>
+            <p class="result-field" th:if="${_user!=null && _user.birthdate!=null}"
+               th:text="'Birthdate: '+${_user.birthdate}"></p>
+        </div>
+        <div class="back-button-w">
+            <button class="back-button">Back</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
