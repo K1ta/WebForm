@@ -21,3 +21,40 @@
     white-space: normal;
     vertical-align: middle;
 }
+
+.form-data {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding:10px;
+    font-size: 20px;
+}
+
+.form-field-input {
+    font-size: 20px;
+}
+
+.form-title {
+    font-size: 25px;
+    padding: 10px;
+}
+
+.form-button {
+    padding: 0 10px 0 10px;
+    font-size: 20px;
+}
+
+.back-button {
+    font-size: 20px;
+    width: 100%;
+    margin: 20px 0 0 0;
+}
