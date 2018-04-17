@@ -18,7 +18,7 @@ public class IndexController {
     }
 
     @RequestMapping("/add")
-    public String add(Model model, @RequestParam(name = "invalid", required = false) Boolean invalid) {
+    public String add(Model model, @RequestParam(name = "invalid", required = false) String invalid) {
         model.addAttribute("user", new User());
         model.addAttribute("invalid", invalid);
         return "add";
@@ -32,7 +32,7 @@ public class IndexController {
     }
 
     @RequestMapping("/update")
-    public String update(Model model, @RequestParam(name = "invalid", required = false) Boolean invalid) {
+    public String update(Model model, @RequestParam(name = "invalid", required = false) String invalid) {
         model.addAttribute("user", new User());
         model.addAttribute("invalid", invalid);
         return "update";

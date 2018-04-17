@@ -16,10 +16,14 @@ public class ApiController {
     @PostMapping("/add")
     public String add(User user) {
         if (repository.existsById(user.getId())) {
-            return "redirect:/add?invalid=true";
+            return "redirect:/add?invalid=id";
+        }
+        String validationResult = user.validate();
+        if (!validationResult.equals("ok")) {
+            return "redirect:/add?invalid=" + validationResult;
         }
         repository.save(user);
-        return "redirect:/add?invalid=false";
+        return "redirect:/add?invalid=ok";
     }
 
     @PostMapping("/get")
@@ -32,13 +36,17 @@ public class ApiController {
     @PostMapping("/update")
     public String update(User user) {
         if (!repository.existsById(user.getId())) {
-            return "redirect:/update?invalid=true";
+            return "redirect:/update?invalid=id";
+        }
+        String validationResult = user.validate();
+        if (!validationResult.equals("ok")) {
+            return "redirect:/update?invalid=" + validationResult;
         }
         User _user = repository.findById(user.getId()).get();
         _user.update(user);
         repository.deleteById(user.getId());
         repository.save(_user);
-        return "redirect:/update?invalid=false";
+        return "redirect:/update?invalid=ok";
     }
 
     @PostMapping("/remove")

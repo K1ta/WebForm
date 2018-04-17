@@ -78,4 +78,26 @@ public class User {
         }
     }
 
+    public String validate() {
+        if (id == null) {
+            return "id";
+        }
+        if (email == null || (email.length() > 0 && !email.matches(".+@.+"))) {
+            return "email";
+        }
+        if (login == null || (login.length() > 0 && !login.matches("[a-zA-Z0-9_]{1,20}"))) {
+            return "login";
+        }
+        if (name == null || (name.length() > 0 && !name.matches("[a-zA-Z-]{1,20}"))) {
+            return "name";
+        }
+        if (surname == null || (surname.length() > 0 && !surname.matches("[a-zA-Z-]{1,20}"))) {
+            return "surname";
+        }
+        if (birthdate == null || (birthdate.length() > 0 && !birthdate.matches("\\d{4}-\\d{2}-\\d{2}"))) {
+            return "birthdate";
+        }
+        return "ok";
+    }
+
 }

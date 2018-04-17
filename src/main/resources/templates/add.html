@@ -11,8 +11,11 @@
 <div class="form-w">
     <div class="form">
         <div class="form-title">Add new user</div>
-        <p th:if="${invalid != null && invalid}" th:text="'ID is already exist'"></p>
-        <p th:if="${invalid != null && !invalid}" th:text="'User successfully added'"></p>
+        <div th:if="${invalid != null}" th:switch="${invalid}">
+            <p th:case="'id'">ID is already exist</p>
+            <p th:case="'ok'">User successfully added</p>
+            <p th:case="*" th:text="'Ivalid ' + ${invalid}"></p>
+        </div>
         <form class="form-data" action="#" th:action="@{/api/add}" th:object="${user}" method="post">
             <div class="form-field">
                 <div class="form-field-name">ID:</div>
