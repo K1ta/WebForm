@@ -1,21 +1,21 @@
-package webform;
+package webform.Entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.lang.reflect.Field;
 
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "user_data")
+public class UserData {
 
     @Id
+    @GeneratedValue
     private Long id;
     private String email;
     private String login;
     private String name;
     private String surname;
     private String birthdate;
+    private Long userid;
 
     public Long getId() {
         return id;
@@ -65,11 +65,19 @@ public class User {
         this.birthdate = birthdate;
     }
 
-    public void update(User user) {
-        for (Field field : User.class.getDeclaredFields()) {
+    public Long getUserId() {
+        return userid;
+    }
+
+    public void setUserId(Long userid) {
+        this.userid = userid;
+    }
+
+    public void update(UserData user) {
+        for (Field field : UserData.class.getDeclaredFields()) {
             try {
                 Object value = field.get(user);
-                if (value.toString().length() > 0) {
+                if (value != null && value.toString().length() > 0) {
                     field.set(this, value);
                 }
             } catch (IllegalAccessException e) {
@@ -79,9 +87,6 @@ public class User {
     }
 
     public String validate() {
-        if (id == null) {
-            return "id";
-        }
         if (email == null || (email.length() > 0 && !email.matches(".+@.+"))) {
             return "email";
         }

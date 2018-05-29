@@ -22,11 +22,11 @@
     vertical-align: middle;
 }
 
-.menu-button > button {
-    margin: 10px 0 10px 0;
-    padding: 10px;
-    font-size: 25px;
-    width: 100%;
+.form-data {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .menu-title {
@@ -34,7 +34,26 @@
     padding: 10px;
 }
 
-.menu-title {
-    font-size: 40px;
+.menu-error {
+    font-size: 20px;
     padding: 10px;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.form-field-input {
+    font-size: 20px;
+    width: 100%;
+}
+
+.form-field-input > input {
+    width: 100%;
 }

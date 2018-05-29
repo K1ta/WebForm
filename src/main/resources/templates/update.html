@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>Update User</title>
+    <title>Update Contact</title>
     <link rel="stylesheet" href="styles/update.css"/>
     <script src="scripts/back.js"></script>
 </head>
@@ -10,18 +10,20 @@
 <body>
 <div class="form-w">
     <div class="form">
-        <div class="form-title">Update user data</div>
-        <div class="info">Fill in the required fields</div>
+        <div class="form-title">Update contact data by name</div>
         <div th:if="${invalid != null}" th:switch="${invalid}">
-            <p th:case="'id'">There is no such ID</p>
-            <p th:case="'ok'">User successfully updated</p>
+            <p th:case="'ok'">Contact successfully updated</p>
+            <p th:case="'user'">No contact with this name</p>
             <p th:case="*" th:text="'Ivalid ' + ${invalid}"></p>
         </div>
         <form class="form-data" action="#" th:action="@{/api/update}" th:object="${user}" method="post">
+            <div class="info">Name of contact</div>
             <div class="form-field">
-                <div class="form-field-name">ID:</div>
-                <input class="form-field-input" type="number" title="ID" required th:field="*{id}">
+                <div class="form-field-name">Name:</div>
+                <input class="form-field-input" type="text" title="Name must contain only letters and '-' sign"
+                       pattern="[a-zA-Z-]{1,20}" th:field="*{name}">
             </div>
+            <div class="info">Fill in the required fields</div>
             <div class="form-field">
                 <div class="form-field-name">Email:</div>
                 <input class="form-field-input" type="email" title="E-mail" th:field="*{email}">
@@ -30,11 +32,6 @@
                 <div class="form-field-name">Login:</div>
                 <input class="form-field-input" type="text" title="Login must contain only letters and numbers"
                        pattern="[a-zA-Z0-9_]{1,20}" th:field="*{login}">
-            </div>
-            <div class="form-field">
-                <div class="form-field-name">Name:</div>
-                <input class="form-field-input" type="text" title="Name must contain only letters and '-' sign"
-                       pattern="[a-zA-Z-]{1,20}" th:field="*{name}">
             </div>
             <div class="form-field">
                 <div class="form-field-name">Surname:</div>

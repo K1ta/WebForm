@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>Add User</title>
+    <title>Add Contact</title>
     <link rel="stylesheet" href="styles/add.css"/>
     <script src="scripts/back.js"></script>
 </head>
@@ -10,17 +10,13 @@
 <body>
 <div class="form-w">
     <div class="form">
-        <div class="form-title">Add new user</div>
+        <div class="form-title">Add new contact</div>
         <div th:if="${invalid != null}" th:switch="${invalid}">
             <p th:case="'id'">ID is already exist</p>
-            <p th:case="'ok'">User successfully added</p>
+            <p th:case="'ok'">Contact successfully added</p>
             <p th:case="*" th:text="'Ivalid ' + ${invalid}"></p>
         </div>
         <form class="form-data" action="#" th:action="@{/api/add}" th:object="${user}" method="post">
-            <div class="form-field">
-                <div class="form-field-name">ID:</div>
-                <input class="form-field-input" type="number" title="ID" required th:field="*{id}">
-            </div>
             <div class="form-field">
                 <div class="form-field-name">Email:</div>
                 <input class="form-field-input" type="email" title="E-mail" required th:field="*{email}">

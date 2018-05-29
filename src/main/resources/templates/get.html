@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>Search User</title>
+    <title>Search Contact</title>
     <link rel="stylesheet" href="styles/get.css"/>
     <script src="scripts/back.js"></script>
 </head>
@@ -10,11 +10,12 @@
 <body>
 <div class="form-w">
     <div class="form">
-        <div class="form-title">Search user by ID</div>
+        <div class="form-title">Search contact by Name</div>
+        <div th:if="${invalid != null}" th:text="'Invalid ' + ${invalid}"></div>
         <form class="form-data" action="#" th:action="@{/api/get}" th:object="${user}" method="post">
             <div class="form-field">
-                <div class="form-field-name">ID:</div>
-                <input class="form-field-input" type="number" title="ID" required th:field="*{id}">
+                <div class="form-field-name">Name:</div>
+                <input class="form-field-input" type="text" title="Name" required th:field="*{name}">
             </div>
             <div class="form-field">
                 <input class="form-button" type="submit" value="Search"/>
@@ -23,9 +24,8 @@
         </form>
         <div class="results-title">Results:</div>
         <div class="results-w">
-            <p class="result-field" th:if="${_user==null}" th:text="'No results found'"></p>
+            <p class="result-field" th:if="${_user==null}" th:text="'No contacts found'"></p>
             <p class="result-field" th:if="${_user!=null && _user.email!=null}" th:text="'Email: '+${_user.email}"></p>
-            <p class="result-field" th:if="${_user!=null && _user.id!=null}" th:text="'ID: '+${_user.id}"></p>
             <p class="result-field" th:if="${_user!=null && _user.login!=null}" th:text="'Login: '+${_user.login}"></p>
             <p class="result-field" th:if="${_user!=null && _user.name!=null}" th:text="'Name: '+${_user.name}"></p>
             <p class="result-field" th:if="${_user!=null && _user.surname!=null}"
