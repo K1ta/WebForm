@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>Delete User</title>
+    <title>Delete Contact</title>
     <link rel="stylesheet" href="styles/remove.css"/>
     <script src="scripts/back.js"></script>
 </head>
@@ -10,13 +10,16 @@
 <body>
 <div class="form-w">
     <div class="form">
-        <div class="form-title">Delete user by ID</div>
-        <p class="info-message" th:if="${invalid!=null && invalid}" th:text="'This ID doesn\'t exist'"></p>
-        <p class="info-message" th:if="${invalid!=null && !invalid}" th:text="'User has been removed'"></p>
+        <div class="form-title">Delete contact by Name</div>
+        <div th:if="${invalid != null}" th:switch="${invalid}">
+            <p th:case="'yes'">Contact with this name doesn't exist</p>
+            <p th:case="'no'">Contact has been removed</p>
+            <p th:case="*" th:text="'Ivalid ' + ${invalid}"></p>
+        </div>
         <form class="form-data" action="#" th:action="@{/api/remove}" th:object="${user}" method="post">
             <div class="form-field">
-                <div class="form-field-name">ID:</div>
-                <input class="form-field-input" type="number" title="ID" required th:field="*{id}">
+                <div class="form-field-name">Name:</div>
+                <input class="form-field-input" type="text" title="Name" required th:field="*{name}">
             </div>
             <div class="form-field">
                 <input class="form-button" type="submit" value="Delete"/>

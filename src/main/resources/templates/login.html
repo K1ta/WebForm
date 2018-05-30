@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Login</title>
+    <link rel="stylesheet" href="styles/login.css"/>
+    <script src="/dist/scripts/login.js"></script>
+</head>
+
+<body>
+<div class="menu-w">
+    <div class="menu">
+        <div class="menu-info">
+            Welcome to the simple contact book.
+            <br>
+            Here you can store information about your friends, specifically
+            <br>
+            name, surname, email address, date of birth and nickname.
+        </div>
+        <div class="menu-title">Authorization:</div>
+        <div class="menu-error"></div>
+        <form class="form-data" onsubmit="return false">
+            <div class="form-field">
+                <div class="form-field-input">
+                    <input class="form-email" type="email" title="E-mail" required placeholder="Email">
+                </div>
+            </div>
+            <div class="form-field">
+                <div class="form-field-input">
+                    <input class="form-password" type="password" title="Password" require placeholder="Password">
+                </div>
+            </div>
+            <div class="form-field">
+                <input class="form-LogIn" type="submit" value="Log In">
+                <input class="form-reset" type="reset" value="Reset">
+                <input class="form-SignUp" type="submit" value="Sign Up">
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+
+</html>
