@@ -1,11 +1,13 @@
 package webform.Entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.lang.reflect.Field;
+import java.sql.Date;
 
 @Entity
 @Table(name = "user_data")
-public class UserData {
+public class UserData implements Serializable {
 
     @Id
     @GeneratedValue
@@ -14,7 +16,7 @@ public class UserData {
     private String login;
     private String name;
     private String surname;
-    private String birthdate;
+    private Date birthdate;
     private Long userid;
 
     public Long getId() {
@@ -57,11 +59,11 @@ public class UserData {
         this.surname = surname;
     }
 
-    public String getBirthdate() {
+    public Date getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(String birthdate) {
+    public void setBirthdate(Date birthdate) {
         this.birthdate = birthdate;
     }
 
@@ -99,7 +101,7 @@ public class UserData {
         if (surname == null || (surname.length() > 0 && !surname.matches("[a-zA-Z-]{1,20}"))) {
             return "surname";
         }
-        if (birthdate == null || (birthdate.length() > 0 && !birthdate.matches("\\d{4}-\\d{2}-\\d{2}"))) {
+        if (birthdate == null) {
             return "birthdate";
         }
         return "ok";

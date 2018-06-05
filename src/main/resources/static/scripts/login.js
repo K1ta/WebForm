@@ -4,8 +4,6 @@ var FORM_SIGNUP_BUTTON_SELECTOR = '.form-SignUp';
 var FORM_EMAIL_SELECTOR = '.form-email';
 var FORM_PASSWORD_SELECTOR = '.form-password';
 
-var setCookie = require('./Utils/setCookie');
-
 var ERROR_SELECTOR = '.menu-error';
 var emailRegExp = '.+@.+';
 var passwordRegExp = '.{1,}';
@@ -41,26 +39,19 @@ function sendAuthRequest(dir) {
 function getSavingData() {
     var email = document.querySelector(FORM_EMAIL_SELECTOR);
     var password = document.querySelector(FORM_PASSWORD_SELECTOR);
-    var savingData = {
+    return {
         email: email.value,
         password: password.value
     };
-    return savingData;
 }
 
 function handleResponse(e) {
     if (this.readyState !== 4) return;
     if (this.status === 200) {
-        var response = this.responseText;
-        var error = JSON.parse(response).error;
-        var token = JSON.parse(response).token;
+        var error = this.getResponseHeader("Error");
         //if response is ok, save token to cookie
         //else show error message
-        if (error === '') {
-            var options = 'path=/; expires=3600';
-            setCookie('token', token, options);
-            //save also user's email
-            setCookie('email', document.querySelector(FORM_EMAIL_SELECTOR).value);
+        if (error === null) {
             document.location.reload();
         } else {
             document.querySelector(ERROR_SELECTOR).innerHTML = error;

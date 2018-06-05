@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Index</title>
@@ -10,7 +10,7 @@
 <body>
 <div class="menu-w">
     <div class="menu">
-        <div class="menu-user"></div>
+        <div class="menu-user" th:if="${email != null}" th:text="'You are logged as ' + ${email}"></div>
         <div class="menu-title-main">Simple Contact Book</div>
         <div class="menu-title">Menu:</div>
         <div class="menu-button">
