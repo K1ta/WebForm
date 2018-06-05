@@ -21,18 +21,25 @@ public class IndexController {
     }
 
     @RequestMapping("/index")
-    public String index(HttpServletRequest request) {
-        Cookie[] cookies = request.getCookies();
-        if (!checkSession(cookies)) {
+    public String index(Model model,
+                        @CookieValue(value = "token", required = false) Cookie token,
+                        @CookieValue(value = "email", required = false) Cookie email,
+                        HttpServletRequest request) {
+        if (userIsNotLogged(token)) {
             return "login";
+        }
+        if (email != null) {
+            model.addAttribute("email", email.getValue());
         }
         return "index";
     }
 
     @RequestMapping("/add")
-    public String add(Model model, @RequestParam(name = "invalid", required = false) String invalid, HttpServletRequest request) {
-        Cookie[] cookies = request.getCookies();
-        if (!checkSession(cookies)) {
+    public String add(Model model,
+                      @RequestParam(name = "invalid", required = false) String invalid,
+                      @CookieValue(value = "token", required = false) Cookie token,
+                      HttpServletRequest request) {
+        if (userIsNotLogged(token)) {
             return "login";
         }
         model.addAttribute("user", new UserData());
@@ -44,9 +51,9 @@ public class IndexController {
     public String get(Model model,
                       @ModelAttribute("_user") UserData _userData,
                       @RequestParam(name = "invalid", required = false) String invalid,
+                      @CookieValue(value = "token", required = false) Cookie token,
                       HttpServletRequest request) {
-        Cookie[] cookies = request.getCookies();
-        if (!checkSession(cookies)) {
+        if (userIsNotLogged(token)) {
             return "login";
         }
         model.addAttribute("user", new UserData());
@@ -56,9 +63,11 @@ public class IndexController {
     }
 
     @RequestMapping("/update")
-    public String update(Model model, @RequestParam(name = "invalid", required = false) String invalid, HttpServletRequest request) {
-        Cookie[] cookies = request.getCookies();
-        if (!checkSession(cookies)) {
+    public String update(Model model,
+                         @RequestParam(name = "invalid", required = false) String invalid,
+                         @CookieValue(value = "token", required = false) Cookie token,
+                         HttpServletRequest request) {
+        if (userIsNotLogged(token)) {
             return "login";
         }
         model.addAttribute("user", new UserData());
@@ -67,9 +76,11 @@ public class IndexController {
     }
 
     @RequestMapping("/remove")
-    public String remove(Model model, @RequestParam(name = "invalid", required = false) String invalid, HttpServletRequest request) {
-        Cookie[] cookies = request.getCookies();
-        if (!checkSession(cookies)) {
+    public String remove(Model model,
+                         @RequestParam(name = "invalid", required = false) String invalid,
+                         @CookieValue(value = "token", required = false) Cookie token,
+                         HttpServletRequest request) {
+        if (userIsNotLogged(token)) {
             return "login";
         }
         model.addAttribute("user", new UserData());
@@ -77,24 +88,15 @@ public class IndexController {
         return "remove";
     }
 
-    private boolean checkSession(Cookie[] cookies) {
-        if (cookies == null) {
-            return false;
+    private boolean userIsNotLogged(Cookie token) {
+        if (token == null) {
+            return true;
         }
-        String token = "";
-        for (Cookie cookie : cookies) {
-            if (cookie.getName().equals("token")) {
-                token = cookie.getValue();
-            }
-        }
-        String dbToken = tokenRepository.findFirstToken(token);
+        String dbToken = tokenRepository.findFirstToken(token.getValue());
         if (dbToken == null) {
-            return false;
+            return true;
         }
-        if (!dbToken.equals(token)) {
-            return false;
-        }
-        return true;
+        return !dbToken.equals(token.getValue());
     }
 
 }

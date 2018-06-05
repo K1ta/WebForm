@@ -21,7 +21,7 @@
             <div class="form-field">
                 <div class="form-field-name">Name:</div>
                 <input class="form-field-input" type="text" title="Name must contain only letters and '-' sign"
-                       pattern="[a-zA-Z-]{1,20}" th:field="*{name}">
+                       pattern="[a-zA-Z-]{1,20}" th:field="*{name}" th:required="true">
             </div>
             <div class="info">Fill in the required fields</div>
             <div class="form-field">
@@ -40,7 +40,7 @@
             </div>
             <div class="form-field">
                 <div class="form-field-name">Birthdate:</div>
-                <input class="form-field-input" type="date" th:field="*{birthdate}">
+                <input class="form-field-input" type="date" th:field="*{birthdate}" th:required="true">
             </div>
             <div class="form-field">
                 <input class="form-button" type="submit" value="Update"/>
